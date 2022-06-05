@@ -31,16 +31,31 @@ if CLIENT then
 
         if !IsValid(wep) or !wep.ArcCW then return end
 
-        print(wep)
+        -- print(wep)
         local curtable = {[wep:GetClass()] = wep:GetNWInt("STFileKills", 0)}
     
         local content = util.TableToJSON(table.Merge(wep.FileKillsTable or {}, curtable))
     
-        print("saved to file kills - ", wep:GetNWInt("STFileKills"))
+        -- print("saved to file kills - ", wep:GetNWInt("STFileKills"))
     
         file.Write("arccw_stattrack.json", content)
 
         timer.Remove(wep:EntIndex() .. "filesaving") -- to be sure
+    end)
+
+    concommand.Add("arccw_stattrack_reset", function(ply)
+        file.Write("arccw_stattrack.json", "{}")
+        print("Okay done")
+        
+        if IsValid(ply) then
+            local wep = ply:GetActiveWeapon()
+            if IsValid(wep) then
+                wep.FileKills = 0
+                net.Start("arrcwstattracksend")
+                net.WriteUInt(0, 20)
+                net.SendToServer()
+            end
+        end
     end)
 else
     util.AddNetworkString("arrcwstattracksend")
@@ -50,6 +65,8 @@ else
 
     local function stkill(attacker)
         if !IsValid(attacker) then return end
+        if !attacker:IsPlayer() then return end
+        
         local wep = attacker:GetActiveWeapon()
         if !IsValid(wep) then return end
         if !wep.ArcCW then return end
@@ -82,6 +99,6 @@ else
         local filekills = net.ReadUInt(20)
         local wep = ply:GetActiveWeapon()
         wep.FileKills = filekills
-        print("recieved some kill from file - ", filekills)
+        -- print("recieved some kill from file - ", filekills)
     end)
 end
