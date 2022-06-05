@@ -1,6 +1,7 @@
 att.PrintName = "StatTrak™ Kill Counter"
 att.AbbrevName = "StatTrak™ Kill Counter"
-att.Icon = Material("entities/att/acwatt_uce_stattrak.png", "mips smooth")
+-- att.Icon = Material("entities/stattrak_advert.png", "mips smooth")
+att.Icon = Material("entities/arccw_stattrak.png", "mips smooth")
 att.Description = "StatTrak™ is ostensibly a piece of technology that tracks the number of times an action was taken. In the case of weapons, it is the number of kills."
 att.SortOrder = 1
 
