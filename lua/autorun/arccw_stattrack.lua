@@ -33,7 +33,9 @@ if CLIENT then
 
         -- print(wep)
         local curtable = {[wep:GetClass()] = wep:GetNWInt("STFileKills", 0)}
-    
+        
+        if table.IsEmpty(curtable) then return end
+
         local content = util.TableToJSON(table.Merge(wep.FileKillsTable or {}, curtable))
     
         -- print("saved to file kills - ", wep:GetNWInt("STFileKills"))
