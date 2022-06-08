@@ -30,6 +30,18 @@ if CLIENT then
         if oldwep and wep!=oldwep then return end
 
         if !IsValid(wep) or !wep.ArcCW then return end
+            
+        if file.Exists("arccw_stattrack.json", "DATA") then
+			--print("We found a kills file, importing...")
+			if !wep.FileKillsTable then
+				wep.FileKillsTable = util.JSONToTable(file.Read("arccw_stattrack.json", "DATA") or "") or {}
+				wep.FileKills = wep.FileKillsTable[wep:GetClass()] or 0
+				wep:SetNWInt("STFileKills", wep.FileKills)
+			end
+			
+			local filekills = net.ReadUInt(20)
+			wep.FileKills = filekills
+		end
 
         -- print(wep)
         local curtable = {[wep:GetClass()] = wep:GetNWInt("STFileKills", 0)}
