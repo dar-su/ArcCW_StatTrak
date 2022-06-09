@@ -5,6 +5,8 @@ att.Icon = Material("entities/arccw_stattrak.png", "mips smooth")
 att.Description = "The StatTrak™ Kill Counter is a piece of technology that tracks the number of kills you've made with the weapon attached to it. There are two selectable modes, Global and Local. The former will track kills between sessions while the latter will only track kills for the current session."
 att.SortOrder = 1
 
+att.AddPrefix = "StatTrak™ "
+
 att.Model = "models/weapons/arccw/stattrack.mdl"
 att.ModelScale = Vector(1, 1, 1)
 -- att.OffsetAng  = Angle(-5, 0, 0)
