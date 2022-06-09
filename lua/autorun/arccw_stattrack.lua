@@ -20,7 +20,7 @@ if CLIENT then
                 killcount = wep:GetNWInt("STFileKills", 0)
             end
 
-            mat:SetInt(self.Number, tonumber(string.format("%06d", killcount)[6 - self.Digit]))
+            mat:SetInt(self.Number, tonumber(string.Replace(string.format("%6d", killcount)[6 - self.Digit], " ", "10"))) --calling 10th frame for empty char (titanfall counters)
         end
     })
 
