@@ -4,6 +4,8 @@ att.Icon = Material("entities/arccw_proscreen.png", "mips")
 att.Description = "Adds a small screen to the side of the weapon, showing how many player kills you have achieved with this weapon."
 att.SortOrder = 1.1
 
+att.AddPrefix = "Pro "
+
 att.Model = "models/weapons/attachments/pro_screen.mdl"
 att.ModelScale = Vector(1, 1, 1)
 att.ModelOffset  = Vector(0, 0, 0)
